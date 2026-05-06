@@ -1,0 +1,33 @@
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+k5_share_dir="/project/tsmc65/shared/k5_share"
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -f /tools/common/bashrc ]; then
+	. /tools/common/bashrc
+fi
+
+source /data/project/tsmc65/users/$USER/ws/ddp23/ddp23_pnx/cloud_setup.sh
+export MY_K5_PROJ="/data/project/tsmc65/users/steinse/ws/my_k5_proj"
+source /project/tsmc65/shared/k5_share/k5_xbox/setup/k5_rc3_setup.sh

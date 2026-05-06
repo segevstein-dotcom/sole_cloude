@@ -1,0 +1,16 @@
+s1(20Jan2026:09:30:22):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s2(20Jan2026:11:12:15):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s3(20Jan2026:11:33:12):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s4(22Mar2026:20:19:33):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s5(22Mar2026:20:24:04):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s6(22Mar2026:20:33:04):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s7(24Mar2026:19:30:49):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s8(24Mar2026:19:43:07):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s9(31Mar2026:05:16:31):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s10(31Mar2026:14:14:15):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s11(01Apr2026:05:56:06):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s12(01Apr2026:06:10:26):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s13(01Apr2026:06:37:03):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s14(01Apr2026:07:20:33):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s15(01Apr2026:11:23:45):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
+s16(03Apr2026:13:44:04):  xrun -sv -f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f -UNBUFFERED -delay_trigger +define+XMEM_INTRFC +define+MAX10_FPGA +define+CRNT_XLR=xmemcpy_ref 
