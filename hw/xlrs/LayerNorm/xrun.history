@@ -1,0 +1,1 @@
+s1(18May2026:14:17:10):  xrun /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv zp.sv LayerNorm.sv tb_zeropoint.sv -gui -access +rwc 
