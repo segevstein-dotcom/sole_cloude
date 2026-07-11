@@ -1,0 +1,1 @@
+Info (10281): Verilog HDL Declaration information at zp.sv(23): object "done" differs only in case from object "DONE" in the same scope File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv Line: 23

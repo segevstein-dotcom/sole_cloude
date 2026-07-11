@@ -1,0 +1,14 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-sv
+-f
+/project/tsmc65/shared/k5_share/k5_xbox/tb/k5_xbox_tb_irun.f
+-UNBUFFERED
+-delay_trigger
++define+XMEM_INTRFC
++define+MAX10_FPGA
++define+CRNT_XLR=LayerNorm
+-nowarn
+DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE

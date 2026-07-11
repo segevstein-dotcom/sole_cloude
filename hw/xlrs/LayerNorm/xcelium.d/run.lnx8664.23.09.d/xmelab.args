@@ -1,0 +1,24 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++incdir+/project/tsmc65/shared/k5_share/kuntz5/src/common
+-timescale
+1ns/1ps
+-NOWARN
+DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE:CUMSTS
+-UNBUFFERED
+-no_analogsolver
+-MESSAGES
+tb_preprocess
+-XLMODE
+./xcelium.d/run.lnx8664.23.09.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.23.09.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.23.09.d/hdl.var
+-WORK
+worklib
+-IRUNHASTOP
+-HASXLMODE

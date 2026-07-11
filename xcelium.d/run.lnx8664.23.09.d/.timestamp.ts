@@ -1,0 +1,8 @@
+1783083755 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
+1783037930 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/tb_affine.sv
+1783079267 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
+1783083793 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/tb_zp.sv
+1777825828 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
+1783079276 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
+1783079272 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
+1783008632 /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/tb_ex_ex2.sv

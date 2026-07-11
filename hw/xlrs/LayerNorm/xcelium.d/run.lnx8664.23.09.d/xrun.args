@@ -2,10 +2,15 @@
 // File created by:  xrun
 // Do not modify this file
 //
+-sv
+-timescale
+1ns/1ps
++incdir+/project/tsmc65/shared/k5_share/kuntz5/src/common
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
-zp.sv
-LayerNorm.sv
-tb_zeropoint.sv
--gui
--access
-+rwc
+PreProcess.sv
+tb_preprocess.sv
+-top
+tb_preprocess
+-nowarn
+DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE:CUMSTS
+-UNBUFFERED

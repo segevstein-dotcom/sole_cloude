@@ -9,4 +9,4 @@ $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
 -delay_trigger
 +define+XMEM_INTRFC
 +define+MAX10_FPGA
-+define+CRNT_XLR=xmemcpy_ref
++define+CRNT_XLR=LayerNorm

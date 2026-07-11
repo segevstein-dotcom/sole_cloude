@@ -1,0 +1,43 @@
+
+State Machine - |qsyn_dummy_xlr_wrap|LayerNorm:LayerNorm|state
+Name state.DONE state.AFFINE state.PREPROCESS state.EX_EX2 state.ZP state.IDLE 
+state.IDLE 0 0 0 0 0 0 
+state.ZP 0 0 0 0 1 1 
+state.EX_EX2 0 0 0 1 0 1 
+state.PREPROCESS 0 0 1 0 0 1 
+state.AFFINE 0 1 0 0 0 1 
+state.DONE 1 0 0 0 0 1 
+
+State Machine - |qsyn_dummy_xlr_wrap|LayerNorm:LayerNorm|affine_stage:i_affine_stage|state
+Name state.DONE_ST state.WR_OUTPUT state.PROCESS state.RD_INPUT state.RD_BETA state.RD_GAMMA state.RD_ALPHA state.IDLE 
+state.IDLE 0 0 0 0 0 0 0 0 
+state.RD_ALPHA 0 0 0 0 0 0 1 1 
+state.RD_GAMMA 0 0 0 0 0 1 0 1 
+state.RD_BETA 0 0 0 0 1 0 0 1 
+state.RD_INPUT 0 0 0 1 0 0 0 1 
+state.PROCESS 0 0 1 0 0 0 0 1 
+state.WR_OUTPUT 0 1 0 0 0 0 0 1 
+state.DONE_ST 1 0 0 0 0 0 0 1 
+
+State Machine - |qsyn_dummy_xlr_wrap|LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|state
+Name state.DONE_ST state.RD_LUT state.COMP_MU state.IDLE 
+state.IDLE 0 0 0 0 
+state.COMP_MU 0 0 1 1 
+state.RD_LUT 0 1 0 1 
+state.DONE_ST 1 0 0 1 
+
+State Machine - |qsyn_dummy_xlr_wrap|LayerNorm:LayerNorm|ex_ex2_stage:i_ex_ex2_stage|state
+Name state.DONE_ST state.PROCESS state.RD_INPUT state.RD_ALPHA state.RD_MIN state.IDLE 
+state.IDLE 0 0 0 0 0 0 
+state.RD_MIN 0 0 0 0 1 1 
+state.RD_ALPHA 0 0 0 1 0 1 
+state.RD_INPUT 0 0 1 0 0 1 
+state.PROCESS 0 1 0 0 0 1 
+state.DONE_ST 1 0 0 0 0 1 
+
+State Machine - |qsyn_dummy_xlr_wrap|LayerNorm:LayerNorm|zp_stage:i_zp_stage|state
+Name state.DONE state.WAIT_DATA state.REQ_READ state.IDLE 
+state.IDLE 0 0 0 0 
+state.REQ_READ 0 0 1 1 
+state.WAIT_DATA 0 1 0 1 
+state.DONE 1 0 0 1 

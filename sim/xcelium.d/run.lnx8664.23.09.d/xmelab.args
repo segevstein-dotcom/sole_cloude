@@ -6,7 +6,7 @@
 +define+tsmc65
 +define+XMEM_INTRFC
 +define+MAX10_FPGA
-+define+CRNT_XLR=xmemcpy_ref
++define+CRNT_XLR=LayerNorm
 -NOWARN
 DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE
 -timescale

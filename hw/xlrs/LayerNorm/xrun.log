@@ -1,67 +1,84 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on May 18, 2026 at 14:17:09 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jul 09, 2026 at 16:30:13 UTC
 xrun
+	-sv
+	-timescale 1ns/1ps
+	+incdir+/project/tsmc65/shared/k5_share/kuntz5/src/common
 	/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
-	zp.sv
-	LayerNorm.sv
-	tb_zeropoint.sv
-	-gui
-	-access +rwc
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xrun: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $XPEDION/aa/cds.lib
-|
-xmvlog: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,13): cds.lib Invalid environment variable ''.
-SOFTINCLUDE $EMXHOME/emxinterface/cds.lib
-|
-xmvlog: *W,DLCVAR (/tools/rubyeda/RubySKILL/r20251120.2/cds.site.lib,15): cds.lib Invalid environment variable ''.
-file: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
-	package worklib.xbox_def_pkg:sv
+	PreProcess.sv
+	tb_preprocess.sv
+	-top tb_preprocess
+	-nowarn DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE:CUMSTS
+	-UNBUFFERED
+xrun: *W,CNTSUP: Error 'CUMSTS' cannot be suppressed.
+xrun: *W,CNTSUP: Error 'CUMSTS' cannot be suppressed.
+file: PreProcess.sv
+	module worklib.preprocess_stage:sv
 		errors: 0, warnings: 0
-file: zp.sv
-	module worklib.zp_stage:sv
-		errors: 0, warnings: 0
-file: LayerNorm.sv
-	module worklib.LayerNorm:sv
-		errors: 0, warnings: 0
-file: tb_zeropoint.sv
-  always @(posedge clk or megedge rst_n) begin
-                                      |
-xmvlog: *E,EXPRPA (tb_zeropoint.sv,54|38): expecting a right parenthesis (')') [9.7.2(IEEE)].
-  always @(posedge clk or megedge rst_n) begin
-                                       |
-xmvlog: *E,NOTSTT (tb_zeropoint.sv,54|39): expecting a statement [9(IEEE)].
-	module worklib.tb_zeropoint:sv
-		errors: 2, warnings: 0
+file: tb_preprocess.sv
+xmvlog: *W,SPDUSD: Include directory /project/tsmc65/shared/k5_share/kuntz5/src/common given but not used.
 	Total errors/warnings found outside modules and primitives:
-		errors: 0, warnings: 2
-xrun: *E,VLGERR: An error occurred during parsing.  Review the log file for errors with the code *E and fix those identified problems to proceed.  Exiting with code (status 1).
-TOOL:	xrun(64)	23.09-s013: Exiting on May 18, 2026 at 14:17:12 UTC  (total: 00:00:03)
+		errors: 0, warnings: 1
+xmelab: *W,CNTSUP: Error 'CUMSTS' cannot be suppressed.
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		xbox_def_pkg
+		$unit_0x1ca769a6
+		tb_preprocess
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.preprocess_stage:sv <0x4e992510>
+			streams:  23, words:  6995
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                 Instances  Unique
+		Modules:                 2       2
+		Verilog packages:        1       1
+		Registers:              61      61
+		Scalar wires:           11       -
+		Vectored wires:         29       -
+		Always blocks:           5       5
+		Initial blocks:          4       4
+		Cont. assignments:      18      18
+		Pseudo assignments:      8       -
+		Compilation units:       1       1
+		Process Clocks:          2       1
+		Simulation timescale:  1ps
+	Writing initial simulation snapshot: worklib.tb_preprocess:sv
+Loading snapshot worklib.tb_preprocess:sv .................... Done
+xcelium> source /tools/cadence/XCELIUM/23.09.013/tools/xcelium/files/xmsimrc
+xcelium> run
+xmsim: *W,DVEXACC: some objects excluded from $dumpvars due to access restrictions, use +access+r on command line for access to all objects.
+            File: ./tb_preprocess.sv, line = 220, pos = 12
+           Scope: tb_preprocess
+            Time: 0 FS + 0
+
+
+=== PREPROCESS MULTI-VECTOR TESTBENCH ===
+  Vec | mu_golden   mu_RTL     delta cmp || is_golden is_RTL delta cmp || result
+  ----|--------------------------------------||----------------------------||-------
+    0 | 0x00000000 | 0x00000000 |    0 | OK || 0x0071 | 0x0071 |   0 | OK || PASS
+    1 | 0xfffffff6 | 0xfffffff6 |    0 | OK || 0x008b | 0x008b |   0 | OK || PASS
+    2 | 0xfffffff6 | 0xfffffff6 |    0 | OK || 0x008e | 0x008e |   0 | OK || PASS
+   10 | 0xfffffff7 | 0xfffffff7 |    0 | OK || 0x0091 | 0x0091 |   0 | OK || PASS
+   30 | 0xfffffffa | 0xfffffffa |    0 | OK || 0x008d | 0x008d |   0 | OK || PASS
+   50 | 0xfffffffa | 0xfffffffa |    0 | OK || 0x008f | 0x008f |   0 | OK || PASS
+   75 | 0xfffffffa | 0xfffffffa |    0 | OK || 0x0083 | 0x0083 |   0 | OK || PASS
+  100 | 0xffffffff | 0xffffffff |    0 | OK || 0x0097 | 0x0097 |   0 | OK || PASS
+  125 | 0xfffffffe | 0xfffffffe |    0 | OK || 0x007f | 0x007f |   0 | OK || PASS
+  150 | 0xfffffffe | 0xfffffffe |    0 | OK || 0x008e | 0x008e |   0 | OK || PASS
+  175 | 0xfffffff9 | 0xfffffff9 |    0 | OK || 0x0091 | 0x0091 |   0 | OK || PASS
+  190 | 0xfffffffa | 0xfffffffa |    0 | OK || 0x0092 | 0x0092 |   0 | OK || PASS
+  193 | 0xfffffffa | 0xfffffffa |    0 | OK || 0x008a | 0x008a |   0 | OK || PASS
+  195 | 0xfffffffd | 0xfffffffd |    0 | OK || 0x0088 | 0x0088 |   0 | OK || PASS
+  196 | 0xffffffff | 0xffffffff |    0 | OK || 0x0086 | 0x0086 |   0 | OK || PASS
+  ----|--------------------------------------||----------------------------||-------
+  Passed: 15 / 15
+  >>> ALL PASS <<<
+
+Simulation complete via $finish(1) at time 1255 NS + 0
+./tb_preprocess.sv:215     $finish;
+xcelium> exit
+TOOL:	xrun(64)	23.09-s013: Exiting on Jul 09, 2026 at 16:30:16 UTC  (total: 00:00:03)

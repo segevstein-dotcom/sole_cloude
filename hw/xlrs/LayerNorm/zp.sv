@@ -6,17 +6,22 @@ module zp_stage (
   input  logic start,
 
   input  logic [31:0] shared_addr,
-  
-  // Memory read interface from LayerNorm top module
-  mem_intf_read.client_read   mem_intf_read,
 
-  // Output to be used by the EX_EX2 stage
+  // Memory read signals (plain ports — routed/muxed in LayerNorm.sv)
+  output logic                              zp_mem_req,
+  output logic [31:0]                       zp_mem_start_addr,
+  output logic [5:0]                        zp_mem_size_bytes,
+  input  logic                              zp_mem_valid,
+  input  logic [BYTES_PER_XMEM_LINE-1:0][7:0] zp_mem_data,
+
+  // Outputs to downstream stages
   output logic [31:0] global_zp_out,
-  
+  output logic [31:0] gamma_zp_out,
+  output logic [31:0] beta_zp_out,
+
   output logic done
 );
 
-  // Define internal states for the ZP fetch process
   typedef enum logic [1:0] {
     IDLE,
     REQ_READ,
@@ -26,37 +31,30 @@ module zp_stage (
 
   zp_state_t state, next_state;
   logic [31:0] global_zp_reg;
+  logic [31:0] gamma_zp_reg;
+  logic [31:0] beta_zp_reg;
   logic        done_reg;
 
-  // ---------------------------------------------------------
-  // State Machine Sequential Logic
-  // ---------------------------------------------------------
+  // State register
   always_ff @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-      state <= IDLE;
-    end else begin
-      state <= next_state;
-    end
+    if (!rst_n) state <= IDLE;
+    else        state <= next_state;
   end
 
-  // ---------------------------------------------------------
-  // Data Capture & Done Signal Sequential Logic
-  // ---------------------------------------------------------
+  // Data capture and done flag
   always_ff @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
       global_zp_reg <= 32'd0;
+      gamma_zp_reg  <= 32'd0;
+      beta_zp_reg   <= 32'd0;
       done_reg      <= 1'b0;
     end else begin
       if (state == IDLE && start) begin
-        // Clear done flag when a new start pulse arrives
         done_reg <= 1'b0;
-      end else if (state == WAIT_DATA && mem_intf_read.mem_valid) begin
-        // Assuming global_zp is a 32-bit integer (4 bytes)
-        // Adjust the byte packing based on your specific mem_data endianness if needed
-        global_zp_reg <= {mem_intf_read.mem_data[3], 
-                          mem_intf_read.mem_data[2], 
-                          mem_intf_read.mem_data[1], 
-                          mem_intf_read.mem_data[0]};
+      end else if (state == WAIT_DATA && zp_mem_valid) begin
+        global_zp_reg <= {zp_mem_data[3],  zp_mem_data[2],  zp_mem_data[1],  zp_mem_data[0]};
+        gamma_zp_reg  <= {zp_mem_data[7],  zp_mem_data[6],  zp_mem_data[5],  zp_mem_data[4]};
+        beta_zp_reg   <= {zp_mem_data[11], zp_mem_data[10], zp_mem_data[9],  zp_mem_data[8]};
       end else if (state == DONE) begin
         done_reg <= 1'b1;
       end
@@ -64,49 +62,39 @@ module zp_stage (
   end
 
   assign global_zp_out = global_zp_reg;
-  assign done          = done_reg;
+  assign gamma_zp_out  = gamma_zp_reg;
+  assign beta_zp_out   = beta_zp_reg;
+  assign done = (state == DONE);
 
-  // ---------------------------------------------------------
-  // State Machine Combinational Logic
-  // ---------------------------------------------------------
+  // State machine combinational
   always_comb begin
-    // Default assignments
-    next_state = state;
-    
-    // Default memory interface assignments
-    mem_intf_read.mem_req        = 1'b0;
-    mem_intf_read.mem_start_addr = 32'd0;
-    mem_intf_read.mem_size_bytes = 32'd0;
+    next_state        = state;
+    zp_mem_req        = 1'b0;
+    zp_mem_start_addr = 32'd0;
+    zp_mem_size_bytes = 6'd0;
 
     case (state)
       IDLE: begin
-        if (start) begin
+        if (start)
           next_state = REQ_READ;
-        end
       end
 
       REQ_READ: begin
-        // global_zp is the 3rd element in the SoleShared struct (after two int32_t fields)
-        // Address offset: 2 * 4 bytes = 8 bytes
-        mem_intf_read.mem_start_addr = shared_addr + 32'd8; 
-        mem_intf_read.mem_size_bytes = 32'd4; // Read 4 bytes (32-bit int)
-        mem_intf_read.mem_req        = 1'b1;
-        
-        next_state = WAIT_DATA;
+        // global_zp/gamma_zp/beta_zp at SoleShared offsets 8/12/16 — read 12 bytes
+        zp_mem_start_addr = shared_addr + 32'd8;
+        zp_mem_size_bytes = 6'd12;
+        zp_mem_req        = 1'b1;
+        next_state        = WAIT_DATA;
       end
 
       WAIT_DATA: begin
-        if (mem_intf_read.mem_valid) begin
+        if (zp_mem_valid)
           next_state = DONE;
-        end
       end
 
       DONE: begin
-        // Wait here until the top FSM removes the start signal 
-        // (to prevent re-triggering while transitioning to EX_EX2)
-        if (!start) begin
+        if (!start)
           next_state = IDLE;
-        end
       end
 
       default: next_state = IDLE;

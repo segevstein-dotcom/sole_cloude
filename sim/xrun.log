@@ -1,5 +1,5 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Apr 03, 2026 at 13:44:02 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jul 09, 2026 at 18:05:11 UTC
 xrun
 	-sv
 	-f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
@@ -16,6 +16,7 @@ xrun
 				-f /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem.f
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_pkg.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm.sv
+					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm_lite.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_ifc.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_align.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_arbiter.sv
@@ -26,8 +27,12 @@ xrun
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_req_ctrl.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_sram.sv
-				-f /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/xmemcpy_ref/xmemcpy_ref.f
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/xmemcpy_ref/xmemcpy_ref.sv
+				-f /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.f
+					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv
+					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
+					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
+					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
+					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
 			-f /project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/xbox_altera_mems.f
 				/project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_mf.v
 				/project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_sp_ram_1024x256_be.v
@@ -74,10 +79,7 @@ xrun
 	-delay_trigger
 	+define+XMEM_INTRFC
 	+define+MAX10_FPGA
-	+define+CRNT_XLR=xmemcpy_ref
-Recompiling... reason: file '../hw/xlrs/xmemcpy_ref/xmemcpy_ref.sv' is newer than expected.
-	expected: Wed Apr  1 11:23:35 2026
-	actual:   Fri Apr  3 13:43:55 2026
+	+define+CRNT_XLR=LayerNorm
 	Elaborating the design hierarchy:
 		Caching library 'worklib' ....... Done
 	Top level design units:
@@ -88,26 +90,29 @@ Recompiling... reason: file '../hw/xlrs/xmemcpy_ref/xmemcpy_ref.sv' is newer tha
 		k5_smart_uart_pkg
 		sock
 		k5_tb_tasks_pkg
-		$unit_0x08bb8228
+		$unit_0x3a72eb74
 		k5_tb
+    $fatal("NUM_MEMS other than 2 not supported by mannix_mem_farm_lite.sv");
+                                                                          |
+xmelab: *W,STRINT (/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm_lite.sv,157|74): String literal argument supplied to integer parameter.
 	Building instance overlay tables: .................... Done
 	Building instance specific data structures.
 	Loading native compiled code:     .................... Done
 	Design hierarchy summary:
-		                 Instances  Unique
-		Modules:                60      33
-		Interfaces:              4       4
-		Verilog packages:        7       7
-		Registers:             925     761
-		Scalar wires:          363       -
-		Vectored wires:        594       -
-		Always blocks:         159     103
-		Initial blocks:          8       8
-		Cont. assignments:     443     347
-		Pseudo assignments:    233       -
-		Compilation units:       1       1
-		Process Clocks:         92       4
-		Simulation timescale:  1ps
+		                  Instances  Unique
+		Modules:                 55      34
+		Interfaces:               4       4
+		Verilog packages:         7       7
+		Registers:             1030     904
+		Scalar wires:           397       -
+		Vectored wires:         591       -
+		Always blocks:          136     111
+		Initial blocks:           7       7
+		Cont. assignments:      455     395
+		Pseudo assignments:     229       -
+		Compilation units:        1       1
+		Process Clocks:          76       4
+		Simulation timescale:   1ps
 	Writing initial simulation snapshot: worklib.k5_tb:sv
 Loading snapshot worklib.k5_tb:sv .................... Done
 xcelium> source /tools/cadence/XCELIUM/23.09.013/tools/xcelium/files/xmsimrc
@@ -119,12 +124,411 @@ Waiting for server connection
 uart_tb.sv: PY: Hello from Python, got your message: Hello from System-Verilog!
 uart_tb.sv: Remote Python changed UART clk_div_cntr value to     4 (decimal)
 uart_tb.sv: Remote Python changed UART ns_per_bit_actual from 8680.000000 to 50.000000 
+LayerNorm RTL: START vector 0
+DBG VEC0: shared=0x40000000 in=0x400006a0 out=0x40007ea0 mu=0 inv_std=113 min_alpha=-4 global_zp=128 gamma_zp=-2 beta_zp=146
+LayerNorm RTL: DONE vector 0
+LayerNorm RTL: START vector 1
+DBG VEC1: shared=0x40000000 in=0x40000820 out=0x40008020 mu=-10 inv_std=139 min_alpha=-4 global_zp=128 gamma_zp=-2 beta_zp=146
+LayerNorm RTL: DONE vector 1
+LayerNorm RTL: START vector 2
+DBG VEC2: shared=0x40000000 in=0x400009a0 out=0x400081a0 mu=-10 inv_std=142 min_alpha=-4 global_zp=128 gamma_zp=-2 beta_zp=146
+LayerNorm RTL: DONE vector 2
+LayerNorm RTL: START vector 3
+DBG VEC3: shared=0x40000000 in=0x40000b20 out=0x40008320 mu=-9 inv_std=146 min_alpha=-4 global_zp=128 gamma_zp=-2 beta_zp=146
+LayerNorm RTL: DONE vector 3
+LayerNorm RTL: START vector 4
+DBG VEC4: shared=0x40000000 in=0x40000ca0 out=0x400084a0 mu=-9 inv_std=141 min_alpha=-4 global_zp=128 gamma_zp=-2 beta_zp=146
+LayerNorm RTL: DONE vector 4
+LayerNorm RTL: START vector 5
+LayerNorm RTL: DONE vector 5
+LayerNorm RTL: START vector 6
+LayerNorm RTL: DONE vector 6
+LayerNorm RTL: START vector 7
+LayerNorm RTL: DONE vector 7
+LayerNorm RTL: START vector 8
+LayerNorm RTL: DONE vector 8
+LayerNorm RTL: START vector 9
+LayerNorm RTL: DONE vector 9
+LayerNorm RTL: START vector 10
+LayerNorm RTL: DONE vector 10
+LayerNorm RTL: START vector 11
+LayerNorm RTL: DONE vector 11
+LayerNorm RTL: START vector 12
+LayerNorm RTL: DONE vector 12
+LayerNorm RTL: START vector 13
+LayerNorm RTL: DONE vector 13
+LayerNorm RTL: START vector 14
+LayerNorm RTL: DONE vector 14
+LayerNorm RTL: START vector 15
+LayerNorm RTL: DONE vector 15
+LayerNorm RTL: START vector 16
+LayerNorm RTL: DONE vector 16
+LayerNorm RTL: START vector 17
+LayerNorm RTL: DONE vector 17
+LayerNorm RTL: START vector 18
+LayerNorm RTL: DONE vector 18
+LayerNorm RTL: START vector 19
+LayerNorm RTL: DONE vector 19
+LayerNorm RTL: START vector 20
+LayerNorm RTL: DONE vector 20
+LayerNorm RTL: START vector 21
+LayerNorm RTL: DONE vector 21
+LayerNorm RTL: START vector 22
+LayerNorm RTL: DONE vector 22
+LayerNorm RTL: START vector 23
+LayerNorm RTL: DONE vector 23
+LayerNorm RTL: START vector 24
+LayerNorm RTL: DONE vector 24
+LayerNorm RTL: START vector 25
+LayerNorm RTL: DONE vector 25
+LayerNorm RTL: START vector 26
+LayerNorm RTL: DONE vector 26
+LayerNorm RTL: START vector 27
+LayerNorm RTL: DONE vector 27
+LayerNorm RTL: START vector 28
+LayerNorm RTL: DONE vector 28
+LayerNorm RTL: START vector 29
+LayerNorm RTL: DONE vector 29
+LayerNorm RTL: START vector 30
+LayerNorm RTL: DONE vector 30
+LayerNorm RTL: START vector 31
+LayerNorm RTL: DONE vector 31
+LayerNorm RTL: START vector 32
+LayerNorm RTL: DONE vector 32
+LayerNorm RTL: START vector 33
+LayerNorm RTL: DONE vector 33
+LayerNorm RTL: START vector 34
+LayerNorm RTL: DONE vector 34
+LayerNorm RTL: START vector 35
+LayerNorm RTL: DONE vector 35
+LayerNorm RTL: START vector 36
+LayerNorm RTL: DONE vector 36
+LayerNorm RTL: START vector 37
+LayerNorm RTL: DONE vector 37
+LayerNorm RTL: START vector 38
+LayerNorm RTL: DONE vector 38
+LayerNorm RTL: START vector 39
+LayerNorm RTL: DONE vector 39
+LayerNorm RTL: START vector 40
+LayerNorm RTL: DONE vector 40
+LayerNorm RTL: START vector 41
+LayerNorm RTL: DONE vector 41
+LayerNorm RTL: START vector 42
+LayerNorm RTL: DONE vector 42
+LayerNorm RTL: START vector 43
+LayerNorm RTL: DONE vector 43
+LayerNorm RTL: START vector 44
+LayerNorm RTL: DONE vector 44
+LayerNorm RTL: START vector 45
+LayerNorm RTL: DONE vector 45
+LayerNorm RTL: START vector 46
+LayerNorm RTL: DONE vector 46
+LayerNorm RTL: START vector 47
+LayerNorm RTL: DONE vector 47
+LayerNorm RTL: START vector 48
+LayerNorm RTL: DONE vector 48
+LayerNorm RTL: START vector 49
+LayerNorm RTL: DONE vector 49
+LayerNorm RTL: START vector 50
+LayerNorm RTL: DONE vector 50
+LayerNorm RTL: START vector 51
+LayerNorm RTL: DONE vector 51
+LayerNorm RTL: START vector 52
+LayerNorm RTL: DONE vector 52
+LayerNorm RTL: START vector 53
+LayerNorm RTL: DONE vector 53
+LayerNorm RTL: START vector 54
+LayerNorm RTL: DONE vector 54
+LayerNorm RTL: START vector 55
+LayerNorm RTL: DONE vector 55
+LayerNorm RTL: START vector 56
+LayerNorm RTL: DONE vector 56
+LayerNorm RTL: START vector 57
+LayerNorm RTL: DONE vector 57
+LayerNorm RTL: START vector 58
+LayerNorm RTL: DONE vector 58
+LayerNorm RTL: START vector 59
+LayerNorm RTL: DONE vector 59
+LayerNorm RTL: START vector 60
+LayerNorm RTL: DONE vector 60
+LayerNorm RTL: START vector 61
+LayerNorm RTL: DONE vector 61
+LayerNorm RTL: START vector 62
+LayerNorm RTL: DONE vector 62
+LayerNorm RTL: START vector 63
+LayerNorm RTL: DONE vector 63
+LayerNorm RTL: START vector 64
+LayerNorm RTL: DONE vector 64
+LayerNorm RTL: START vector 65
+LayerNorm RTL: DONE vector 65
+LayerNorm RTL: START vector 66
+LayerNorm RTL: DONE vector 66
+LayerNorm RTL: START vector 67
+LayerNorm RTL: DONE vector 67
+LayerNorm RTL: START vector 68
+LayerNorm RTL: DONE vector 68
+LayerNorm RTL: START vector 69
+LayerNorm RTL: DONE vector 69
+LayerNorm RTL: START vector 70
+LayerNorm RTL: DONE vector 70
+LayerNorm RTL: START vector 71
+LayerNorm RTL: DONE vector 71
+LayerNorm RTL: START vector 72
+LayerNorm RTL: DONE vector 72
+LayerNorm RTL: START vector 73
+LayerNorm RTL: DONE vector 73
+LayerNorm RTL: START vector 74
+LayerNorm RTL: DONE vector 74
+LayerNorm RTL: START vector 75
+LayerNorm RTL: DONE vector 75
+LayerNorm RTL: START vector 76
+LayerNorm RTL: DONE vector 76
+LayerNorm RTL: START vector 77
+LayerNorm RTL: DONE vector 77
+LayerNorm RTL: START vector 78
+LayerNorm RTL: DONE vector 78
+LayerNorm RTL: START vector 79
+LayerNorm RTL: DONE vector 79
+LayerNorm RTL: START vector 80
+LayerNorm RTL: DONE vector 80
+LayerNorm RTL: START vector 81
+LayerNorm RTL: DONE vector 81
+LayerNorm RTL: START vector 82
+LayerNorm RTL: DONE vector 82
+LayerNorm RTL: START vector 83
+LayerNorm RTL: DONE vector 83
+LayerNorm RTL: START vector 84
+LayerNorm RTL: DONE vector 84
+LayerNorm RTL: START vector 85
+LayerNorm RTL: DONE vector 85
+LayerNorm RTL: START vector 86
+LayerNorm RTL: DONE vector 86
+LayerNorm RTL: START vector 87
+LayerNorm RTL: DONE vector 87
+LayerNorm RTL: START vector 88
+LayerNorm RTL: DONE vector 88
+LayerNorm RTL: START vector 89
+LayerNorm RTL: DONE vector 89
+LayerNorm RTL: START vector 90
+LayerNorm RTL: DONE vector 90
+LayerNorm RTL: START vector 91
+LayerNorm RTL: DONE vector 91
+LayerNorm RTL: START vector 92
+LayerNorm RTL: DONE vector 92
+LayerNorm RTL: START vector 93
+LayerNorm RTL: DONE vector 93
+LayerNorm RTL: START vector 94
+LayerNorm RTL: DONE vector 94
+LayerNorm RTL: START vector 95
+LayerNorm RTL: DONE vector 95
+LayerNorm RTL: START vector 96
+LayerNorm RTL: DONE vector 96
+LayerNorm RTL: START vector 97
+LayerNorm RTL: DONE vector 97
+LayerNorm RTL: START vector 98
+LayerNorm RTL: DONE vector 98
+LayerNorm RTL: START vector 99
+LayerNorm RTL: DONE vector 99
+LayerNorm RTL: START vector 100
+LayerNorm RTL: DONE vector 100
+LayerNorm RTL: START vector 101
+LayerNorm RTL: DONE vector 101
+LayerNorm RTL: START vector 102
+LayerNorm RTL: DONE vector 102
+LayerNorm RTL: START vector 103
+LayerNorm RTL: DONE vector 103
+LayerNorm RTL: START vector 104
+LayerNorm RTL: DONE vector 104
+LayerNorm RTL: START vector 105
+LayerNorm RTL: DONE vector 105
+LayerNorm RTL: START vector 106
+LayerNorm RTL: DONE vector 106
+LayerNorm RTL: START vector 107
+LayerNorm RTL: DONE vector 107
+LayerNorm RTL: START vector 108
+LayerNorm RTL: DONE vector 108
+LayerNorm RTL: START vector 109
+LayerNorm RTL: DONE vector 109
+LayerNorm RTL: START vector 110
+LayerNorm RTL: DONE vector 110
+LayerNorm RTL: START vector 111
+LayerNorm RTL: DONE vector 111
+LayerNorm RTL: START vector 112
+LayerNorm RTL: DONE vector 112
+LayerNorm RTL: START vector 113
+LayerNorm RTL: DONE vector 113
+LayerNorm RTL: START vector 114
+LayerNorm RTL: DONE vector 114
+LayerNorm RTL: START vector 115
+LayerNorm RTL: DONE vector 115
+LayerNorm RTL: START vector 116
+LayerNorm RTL: DONE vector 116
+LayerNorm RTL: START vector 117
+LayerNorm RTL: DONE vector 117
+LayerNorm RTL: START vector 118
+LayerNorm RTL: DONE vector 118
+LayerNorm RTL: START vector 119
+LayerNorm RTL: DONE vector 119
+LayerNorm RTL: START vector 120
+LayerNorm RTL: DONE vector 120
+LayerNorm RTL: START vector 121
+LayerNorm RTL: DONE vector 121
+LayerNorm RTL: START vector 122
+LayerNorm RTL: DONE vector 122
+LayerNorm RTL: START vector 123
+LayerNorm RTL: DONE vector 123
+LayerNorm RTL: START vector 124
+LayerNorm RTL: DONE vector 124
+LayerNorm RTL: START vector 125
+LayerNorm RTL: DONE vector 125
+LayerNorm RTL: START vector 126
+LayerNorm RTL: DONE vector 126
+LayerNorm RTL: START vector 127
+LayerNorm RTL: DONE vector 127
+LayerNorm RTL: START vector 128
+LayerNorm RTL: DONE vector 128
+LayerNorm RTL: START vector 129
+LayerNorm RTL: DONE vector 129
+LayerNorm RTL: START vector 130
+LayerNorm RTL: DONE vector 130
+LayerNorm RTL: START vector 131
+LayerNorm RTL: DONE vector 131
+LayerNorm RTL: START vector 132
+LayerNorm RTL: DONE vector 132
+LayerNorm RTL: START vector 133
+LayerNorm RTL: DONE vector 133
+LayerNorm RTL: START vector 134
+LayerNorm RTL: DONE vector 134
+LayerNorm RTL: START vector 135
+LayerNorm RTL: DONE vector 135
+LayerNorm RTL: START vector 136
+LayerNorm RTL: DONE vector 136
+LayerNorm RTL: START vector 137
+LayerNorm RTL: DONE vector 137
+LayerNorm RTL: START vector 138
+LayerNorm RTL: DONE vector 138
+LayerNorm RTL: START vector 139
+LayerNorm RTL: DONE vector 139
+LayerNorm RTL: START vector 140
+LayerNorm RTL: DONE vector 140
+LayerNorm RTL: START vector 141
+LayerNorm RTL: DONE vector 141
+LayerNorm RTL: START vector 142
+LayerNorm RTL: DONE vector 142
+LayerNorm RTL: START vector 143
+LayerNorm RTL: DONE vector 143
+LayerNorm RTL: START vector 144
+LayerNorm RTL: DONE vector 144
+LayerNorm RTL: START vector 145
+LayerNorm RTL: DONE vector 145
+LayerNorm RTL: START vector 146
+LayerNorm RTL: DONE vector 146
+LayerNorm RTL: START vector 147
+LayerNorm RTL: DONE vector 147
+LayerNorm RTL: START vector 148
+LayerNorm RTL: DONE vector 148
+LayerNorm RTL: START vector 149
+LayerNorm RTL: DONE vector 149
+LayerNorm RTL: START vector 150
+LayerNorm RTL: DONE vector 150
+LayerNorm RTL: START vector 151
+LayerNorm RTL: DONE vector 151
+LayerNorm RTL: START vector 152
+LayerNorm RTL: DONE vector 152
+LayerNorm RTL: START vector 153
+LayerNorm RTL: DONE vector 153
+LayerNorm RTL: START vector 154
+LayerNorm RTL: DONE vector 154
+LayerNorm RTL: START vector 155
+LayerNorm RTL: DONE vector 155
+LayerNorm RTL: START vector 156
+LayerNorm RTL: DONE vector 156
+LayerNorm RTL: START vector 157
+LayerNorm RTL: DONE vector 157
+LayerNorm RTL: START vector 158
+LayerNorm RTL: DONE vector 158
+LayerNorm RTL: START vector 159
+LayerNorm RTL: DONE vector 159
+LayerNorm RTL: START vector 160
+LayerNorm RTL: DONE vector 160
+LayerNorm RTL: START vector 161
+LayerNorm RTL: DONE vector 161
+LayerNorm RTL: START vector 162
+LayerNorm RTL: DONE vector 162
+LayerNorm RTL: START vector 163
+LayerNorm RTL: DONE vector 163
+LayerNorm RTL: START vector 164
+LayerNorm RTL: DONE vector 164
+LayerNorm RTL: START vector 165
+LayerNorm RTL: DONE vector 165
+LayerNorm RTL: START vector 166
+LayerNorm RTL: DONE vector 166
+LayerNorm RTL: START vector 167
+LayerNorm RTL: DONE vector 167
+LayerNorm RTL: START vector 168
+LayerNorm RTL: DONE vector 168
+LayerNorm RTL: START vector 169
+LayerNorm RTL: DONE vector 169
+LayerNorm RTL: START vector 170
+LayerNorm RTL: DONE vector 170
+LayerNorm RTL: START vector 171
+LayerNorm RTL: DONE vector 171
+LayerNorm RTL: START vector 172
+LayerNorm RTL: DONE vector 172
+LayerNorm RTL: START vector 173
+LayerNorm RTL: DONE vector 173
+LayerNorm RTL: START vector 174
+LayerNorm RTL: DONE vector 174
+LayerNorm RTL: START vector 175
+LayerNorm RTL: DONE vector 175
+LayerNorm RTL: START vector 176
+LayerNorm RTL: DONE vector 176
+LayerNorm RTL: START vector 177
+LayerNorm RTL: DONE vector 177
+LayerNorm RTL: START vector 178
+LayerNorm RTL: DONE vector 178
+LayerNorm RTL: START vector 179
+LayerNorm RTL: DONE vector 179
+LayerNorm RTL: START vector 180
+LayerNorm RTL: DONE vector 180
+LayerNorm RTL: START vector 181
+LayerNorm RTL: DONE vector 181
+LayerNorm RTL: START vector 182
+LayerNorm RTL: DONE vector 182
+LayerNorm RTL: START vector 183
+LayerNorm RTL: DONE vector 183
+LayerNorm RTL: START vector 184
+LayerNorm RTL: DONE vector 184
+LayerNorm RTL: START vector 185
+LayerNorm RTL: DONE vector 185
+LayerNorm RTL: START vector 186
+LayerNorm RTL: DONE vector 186
+LayerNorm RTL: START vector 187
+LayerNorm RTL: DONE vector 187
+LayerNorm RTL: START vector 188
+LayerNorm RTL: DONE vector 188
+LayerNorm RTL: START vector 189
+LayerNorm RTL: DONE vector 189
+LayerNorm RTL: START vector 190
+LayerNorm RTL: DONE vector 190
+LayerNorm RTL: START vector 191
+LayerNorm RTL: DONE vector 191
+LayerNorm RTL: START vector 192
+LayerNorm RTL: DONE vector 192
+LayerNorm RTL: START vector 193
+LayerNorm RTL: DONE vector 193
+LayerNorm RTL: START vector 194
+LayerNorm RTL: DONE vector 194
+LayerNorm RTL: START vector 195
+LayerNorm RTL: DONE vector 195
+LayerNorm RTL: START vector 196
+LayerNorm RTL: DONE vector 196
 
 
- 4171574035ns uart_tb.sv: Detected remote quit command. Quitting 
+ 136951785ns uart_tb.sv: Detected remote quit command. Quitting 
 
 
-Simulation complete via $finish(1) at time 4171574035 NS + 1
+Simulation complete via $finish(1) at time 136951785 NS + 1
 /project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s013: Exiting on Apr 03, 2026 at 13:57:11 UTC  (total: 00:13:09)
+TOOL:	xrun(64)	23.09-s013: Exiting on Jul 09, 2026 at 18:05:47 UTC  (total: 00:00:36)

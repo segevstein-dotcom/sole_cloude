@@ -18,6 +18,7 @@ DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlr_wrap.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_pkg.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm.sv
+/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm_lite.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_ifc.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_align.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_arbiter.sv
@@ -28,7 +29,11 @@ DLCVAR:NCEXDEP:DSEM2009:DSEMEL:MTDYNUSE
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_req_ctrl.sv
 /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_sram.sv
-/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/xmemcpy_ref/xmemcpy_ref.sv
+/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv
+/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
+/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
+/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
+/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
 /project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_mf.v
 /project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_sp_ram_1024x256_be.v
 -DEFINE
@@ -70,7 +75,7 @@ XMEM_INTRFC
 -DEFINE
 MAX10_FPGA
 -DEFINE
-CRNT_XLR=xmemcpy_ref
+CRNT_XLR=LayerNorm
 -CDSLIB
 ./xcelium.d/run.lnx8664.23.09.d/cdsrun.lib
 -HDLVAR

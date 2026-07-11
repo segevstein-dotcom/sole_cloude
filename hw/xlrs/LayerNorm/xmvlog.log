@@ -1,0 +1,5 @@
+xmvlog(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
+xmvlog: *W,DLNOHV: Unable to find an 'hdl.var' file to load in.
+package xbox_def_pkg;
+      |
+xmvlog: *F,NOWORK (/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv,1|6): no working library defined.

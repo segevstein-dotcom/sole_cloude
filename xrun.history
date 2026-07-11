@@ -1,0 +1,7 @@
+s1(03Jul2026:00:14:02):  xrun -sv -timescale 1ns/1ps -compile -top affine_stage /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/Affine.sv 
+s2(03Jul2026:00:18:10):  xrun -sv -timescale 1ns/1ps /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/Affine.sv hw/xlrs/LayerNorm/tb_affine.sv -top tb_affine 
+s3(03Jul2026:00:18:58):  xrun -sv -timescale 1ns/1ps /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/Affine.sv hw/xlrs/LayerNorm/tb_affine.sv -top tb_affine 
+s4(03Jul2026:11:51:42):  xrun -sv -timescale 1ns/1ps -compile /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/zp.sv hw/xlrs/LayerNorm/ex_ex2.sv hw/xlrs/LayerNorm/PreProcess.sv hw/xlrs/LayerNorm/Affine.sv 
+s5(03Jul2026:11:51:52):  xrun -sv -timescale 1ns/1ps /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/ex_ex2.sv hw/xlrs/LayerNorm/tb_ex_ex2.sv -top tb_ex_ex2 
+s6(03Jul2026:11:52:00):  xrun -sv -timescale 1ns/1ps /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/Affine.sv hw/xlrs/LayerNorm/tb_affine.sv -top tb_affine 
+s7(03Jul2026:13:11:08):  xrun -access +rwc -sv /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv hw/xlrs/LayerNorm/zp.sv hw/xlrs/LayerNorm/tb_zp.sv -top tb_zp 

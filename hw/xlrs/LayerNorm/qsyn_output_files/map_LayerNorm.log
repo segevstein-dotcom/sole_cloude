@@ -1,0 +1,191 @@
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+    Info: Copyright (C) 2025  Altera Corporation. All rights reserved.
+    Info: Your use of Altera Corporation's design tools, logic functions 
+    Info: and other software and tools, and any partner logic 
+    Info: functions, and any output files from any of the foregoing 
+    Info: (including device programming or simulation files), and any 
+    Info: associated documentation or information are expressly subject 
+    Info: to the terms and conditions of the Altera Program License 
+    Info: Subscription Agreement, the Altera Quartus Prime License Agreement,
+    Info: the Altera IP License Agreement, or other applicable license
+    Info: agreement, including, without limitation, that your use is for
+    Info: the sole purpose of programming logic devices manufactured by
+    Info: Altera and sold by Altera or its authorized distributors.  Please
+    Info: refer to the Altera Software License Subscription Agreements 
+    Info: on the Quartus Prime software download page.
+    Info: Processing started: Thu Jul  9 18:06:24 2026
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LayerNorm -c LayerNorm
+Info (12021): Found 1 design units, including 0 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv
+    Info (12022): Found design unit 1: xbox_def_pkg (SystemVerilog) File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_def_pkg.sv Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv
+    Info (12023): Found entity 1: mem_intf_read File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_read.sv Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv
+    Info (12023): Found entity 1: mem_intf_write File: /project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv
+    Info (12023): Found entity 1: qsyn_dummy_xlr_wrap File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv
+    Info (12023): Found entity 1: LayerNorm File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 5
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
+    Info (12023): Found entity 1: zp_stage File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
+    Info (12023): Found entity 1: ex_ex2_stage File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
+    Info (12023): Found entity 1: preprocess_stage File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 3
+Info (12021): Found 1 design units, including 1 entities, in source file /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
+    Info (12023): Found entity 1: affine_stage File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 3
+Info (12127): Elaborating entity "qsyn_dummy_xlr_wrap" for the top level hierarchy
+Info (12128): Elaborating entity "mem_intf_read" for hierarchy "mem_intf_read:mem_intf_read" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 33
+Warning (12158): Entity "mem_intf_read" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 33
+Info (12128): Elaborating entity "mem_intf_write" for hierarchy "mem_intf_write:mem_intf_write" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 34
+Warning (12158): Entity "mem_intf_write" contains only dangling pins File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 34
+Info (12128): Elaborating entity "LayerNorm" for hierarchy "LayerNorm:LayerNorm" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 62
+Warning (10230): Verilog HDL assignment warning at LayerNorm.sv(108): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 108
+Warning (10230): Verilog HDL assignment warning at LayerNorm.sv(113): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 113
+Warning (10230): Verilog HDL assignment warning at LayerNorm.sv(118): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 118
+Warning (10230): Verilog HDL assignment warning at LayerNorm.sv(123): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 123
+Info (10264): Verilog HDL Case Statement information at LayerNorm.sv(105): all case item expressions in this case statement are onehot File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 105
+Warning (10230): Verilog HDL assignment warning at LayerNorm.sv(140): truncated value with size 32 to match size of target (16) File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 140
+Info (12128): Elaborating entity "zp_stage" for hierarchy "LayerNorm:LayerNorm|zp_stage:i_zp_stage" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 296
+Warning (10036): Verilog HDL or VHDL warning at zp.sv(36): object "done_reg" assigned a value but never read File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv Line: 36
+Info (12128): Elaborating entity "ex_ex2_stage" for hierarchy "LayerNorm:LayerNorm|ex_ex2_stage:i_ex_ex2_stage" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 315
+Info (10264): Verilog HDL Case Statement information at ex_ex2.sv(227): all case item expressions in this case statement are onehot File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv Line: 227
+Info (12128): Elaborating entity "preprocess_stage" for hierarchy "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 334
+Warning (10036): Verilog HDL or VHDL warning at PreProcess.sv(89): object "done_reg" assigned a value but never read File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 89
+Info (12128): Elaborating entity "affine_stage" for hierarchy "LayerNorm:LayerNorm|affine_stage:i_affine_stage" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv Line: 361
+Info (10264): Verilog HDL Case Statement information at Affine.sv(347): all case item expressions in this case statement are onehot File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 347
+Info (19000): Inferred 1 megafunctions from design logic
+    Info (276034): Inferred altshift_taps megafunction from the following design logic: "LayerNorm:LayerNorm|affine_stage:i_affine_stage|p2_b_s_rtl_0"
+        Info (286033): Parameter NUMBER_OF_TAPS set to 1
+        Info (286033): Parameter TAP_DISTANCE set to 3
+        Info (286033): Parameter WIDTH set to 32
+Info (278001): Inferred 5 megafunctions from design logic
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|Mult2" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 72
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|Mult1" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 70
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|Mult0" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 63
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LayerNorm:LayerNorm|affine_stage:i_affine_stage|Mult1" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 186
+    Info (278003): Inferred multiplier megafunction ("lpm_mult") from the following logic: "LayerNorm:LayerNorm|affine_stage:i_affine_stage|Mult0" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 178
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|affine_stage:i_affine_stage|altshift_taps:p2_b_s_rtl_0"
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|affine_stage:i_affine_stage|altshift_taps:p2_b_s_rtl_0" with the following parameter:
+    Info (12134): Parameter "NUMBER_OF_TAPS" = "1"
+    Info (12134): Parameter "TAP_DISTANCE" = "3"
+    Info (12134): Parameter "WIDTH" = "32"
+Info (12021): Found 1 design units, including 1 entities, in source file db/shift_taps_2vl.tdf
+    Info (12023): Found entity 1: shift_taps_2vl File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/shift_taps_2vl.tdf Line: 31
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jj51.tdf
+    Info (12023): Found entity 1: altsyncram_jj51 File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/altsyncram_jj51.tdf Line: 28
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_oed.tdf
+    Info (12023): Found entity 1: add_sub_oed File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/add_sub_oed.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_s3f.tdf
+    Info (12023): Found entity 1: cntr_s3f File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/cntr_s3f.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/cmpr_erb.tdf
+    Info (12023): Found entity 1: cmpr_erb File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/cmpr_erb.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/cntr_fjg.tdf
+    Info (12023): Found entity 1: cntr_fjg File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/cntr_fjg.tdf Line: 26
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult2" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 72
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult2" with the following parameter: File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 72
+    Info (12134): Parameter "LPM_WIDTHA" = "26"
+    Info (12134): Parameter "LPM_WIDTHB" = "26"
+    Info (12134): Parameter "LPM_WIDTHP" = "52"
+    Info (12134): Parameter "LPM_WIDTHR" = "52"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_tgs.tdf
+    Info (12023): Found entity 1: mult_tgs File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_tgs.tdf Line: 31
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult1" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 70
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 70
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "28"
+    Info (12134): Parameter "LPM_WIDTHP" = "60"
+    Info (12134): Parameter "LPM_WIDTHR" = "60"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_irs.tdf
+    Info (12023): Found entity 1: mult_irs File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_irs.tdf Line: 31
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult0" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 63
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult0" with the following parameter: File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv Line: 63
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "24"
+    Info (12134): Parameter "LPM_WIDTHP" = "56"
+    Info (12134): Parameter "LPM_WIDTHR" = "56"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "YES"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_jrs.tdf
+    Info (12023): Found entity 1: mult_jrs File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_jrs.tdf Line: 31
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|affine_stage:i_affine_stage|lpm_mult:Mult1" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 186
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|affine_stage:i_affine_stage|lpm_mult:Mult1" with the following parameter: File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 186
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "32"
+    Info (12134): Parameter "LPM_WIDTHP" = "64"
+    Info (12134): Parameter "LPM_WIDTHR" = "64"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_qgs.tdf
+    Info (12023): Found entity 1: mult_qgs File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_qgs.tdf Line: 31
+Info (12130): Elaborated megafunction instantiation "LayerNorm:LayerNorm|affine_stage:i_affine_stage|lpm_mult:Mult0" File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 178
+Info (12133): Instantiated megafunction "LayerNorm:LayerNorm|affine_stage:i_affine_stage|lpm_mult:Mult0" with the following parameter: File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv Line: 178
+    Info (12134): Parameter "LPM_WIDTHA" = "32"
+    Info (12134): Parameter "LPM_WIDTHB" = "17"
+    Info (12134): Parameter "LPM_WIDTHP" = "49"
+    Info (12134): Parameter "LPM_WIDTHR" = "49"
+    Info (12134): Parameter "LPM_WIDTHS" = "1"
+    Info (12134): Parameter "LPM_REPRESENTATION" = "SIGNED"
+    Info (12134): Parameter "INPUT_A_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "INPUT_B_IS_CONSTANT" = "NO"
+    Info (12134): Parameter "MAXIMIZE_SPEED" = "5"
+Info (12021): Found 1 design units, including 1 entities, in source file db/mult_0hs.tdf
+    Info (12023): Found entity 1: mult_0hs File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_0hs.tdf Line: 31
+Warning (14284): Synthesized away the following node(s):
+    Warning (14285): Synthesized away the following DSP element node(s):
+        Warning (14320): Synthesized away node "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult2|mult_tgs:auto_generated|mac_mult7" File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_tgs.tdf Line: 67
+        Warning (14320): Synthesized away node "LayerNorm:LayerNorm|preprocess_stage:i_preprocess_stage|lpm_mult:Mult2|mult_tgs:auto_generated|mac_out8" File: /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/db/mult_tgs.tdf Line: 91
+Info (13014): Ignored 632 buffer(s)
+    Info (13019): Ignored 632 SOFT buffer(s)
+Info (13000): Registers with preset signals will power-up high File: /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv Line: 227
+Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 191 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/qsyn_output_files/LayerNorm.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 16 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[0]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[1]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[2]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[3]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[4]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[5]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[6]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[7]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[8]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[9]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[10]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[11]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[12]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[13]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[14]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+    Warning (15610): No output dependent on input pin "host_regs_read_pulse[15]" File: /data/project/tsmc65/shared/qsyn/qsyn_dummy_xlr_wrap/qsyn_dummy_xlr_wrap.sv Line: 26
+Info (21057): Implemented 6074 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 63 input pins
+    Info (21059): Implemented 57 output pins
+    Info (21061): Implemented 5888 logic cells
+    Info (21064): Implemented 32 RAM segments
+    Info (21062): Implemented 34 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 30 warnings
+    Info: Peak virtual memory: 667 megabytes
+    Info: Processing ended: Thu Jul  9 18:06:47 2026
+    Info: Elapsed time: 00:00:23
+    Info: Total CPU time (on all processors): 00:00:24
