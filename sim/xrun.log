@@ -1,5 +1,5 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Jul 09, 2026 at 18:05:11 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jul 16, 2026 at 20:02:25 UTC
 xrun
 	-sv
 	-f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
@@ -27,12 +27,12 @@ xrun
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_intf_write.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_req_ctrl.sv
 					/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mem_sram.sv
-				-f /data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.f
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
-					/data/project/tsmc65/users/steinse/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
+				-f /data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.f
+					/data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/LayerNorm.sv
+					/data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/zp.sv
+					/data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/ex_ex2.sv
+					/data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/PreProcess.sv
+					/data/project/tsmc65/users/bassind/ws/my_k5_proj/hw/xlrs/LayerNorm/Affine.sv
 			-f /project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/xbox_altera_mems.f
 				/project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_mf.v
 				/project/tsmc65/shared/k5_share/k5_xbox/fpga/xbox_altera_mems/altera_sp_ram_1024x256_be.v
@@ -80,40 +80,6 @@ xrun
 	+define+XMEM_INTRFC
 	+define+MAX10_FPGA
 	+define+CRNT_XLR=LayerNorm
-	Elaborating the design hierarchy:
-		Caching library 'worklib' ....... Done
-	Top level design units:
-		xbox_def_pkg
-		mem_intf_pkg
-		k5_pkg
-		seg7_art_pkg
-		k5_smart_uart_pkg
-		sock
-		k5_tb_tasks_pkg
-		$unit_0x3a72eb74
-		k5_tb
-    $fatal("NUM_MEMS other than 2 not supported by mannix_mem_farm_lite.sv");
-                                                                          |
-xmelab: *W,STRINT (/project/tsmc65/shared/k5_share/k5_xbox/hw/xbox/xbox_xlrs/mem/mannix_mem_farm_lite.sv,157|74): String literal argument supplied to integer parameter.
-	Building instance overlay tables: .................... Done
-	Building instance specific data structures.
-	Loading native compiled code:     .................... Done
-	Design hierarchy summary:
-		                  Instances  Unique
-		Modules:                 55      34
-		Interfaces:               4       4
-		Verilog packages:         7       7
-		Registers:             1030     904
-		Scalar wires:           397       -
-		Vectored wires:         591       -
-		Always blocks:          136     111
-		Initial blocks:           7       7
-		Cont. assignments:      455     395
-		Pseudo assignments:     229       -
-		Compilation units:        1       1
-		Process Clocks:          76       4
-		Simulation timescale:   1ps
-	Writing initial simulation snapshot: worklib.k5_tb:sv
 Loading snapshot worklib.k5_tb:sv .................... Done
 xcelium> source /tools/cadence/XCELIUM/23.09.013/tools/xcelium/files/xmsimrc
 xcelium> run
@@ -525,10 +491,10 @@ LayerNorm RTL: START vector 196
 LayerNorm RTL: DONE vector 196
 
 
- 136951785ns uart_tb.sv: Detected remote quit command. Quitting 
+ 135208355ns uart_tb.sv: Detected remote quit command. Quitting 
 
 
-Simulation complete via $finish(1) at time 136951785 NS + 1
+Simulation complete via $finish(1) at time 135208355 NS + 1
 /project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s013: Exiting on Jul 09, 2026 at 18:05:47 UTC  (total: 00:00:36)
+TOOL:	xrun(64)	23.09-s013: Exiting on Jul 16, 2026 at 20:02:54 UTC  (total: 00:00:29)

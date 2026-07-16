@@ -1,5 +1,5 @@
 $CDSROOT = /tools/cadence/XCELIUM/23.09.013
-$TESTDIR = /project/tsmc65/users/steinse/ws/my_k5_proj/sim
+$TESTDIR = /project/tsmc65/users/bassind/ws/AILayernorm/sim
 
 TOOL:	xmsc(64)	23.09-s013
 xmsc cc parameters: 
