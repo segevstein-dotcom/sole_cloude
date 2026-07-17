@@ -1,78 +1,82 @@
-# LayerNorm K5 Hardware Accelerator Project
+# 🧮 LayerNorm Implementation
 
-## Project Overview
-This repository contains a hardware-accelerated implementation of Layer Normalization for the K5 architecture. The project consists of a SystemVerilog hardware accelerator (`hw/`) designed to offload LayerNorm computations from the host CPU, and the corresponding software application integration (`sw/`). 
-
-### The Problem
-Layer Normalization is a computationally expensive operation commonly used in Deep Learning models (like Transformers). Computing it purely in software on a general-purpose processor introduces significant latency and performance bottlenecks.
-
-### Project Goals
-1. Provide a dedicated RTL accelerator that computes Layer Normalization much faster than software.
-2. Abstract the mathematical complexity (statistical accumulations, zero-point handling, affine transformations) into hardware.
-3. Provide a unified software interface for the host CPU to seamlessly invoke the hardware accelerator.
+## 📋 Table of Contents
+1. [Layer Normalization](#-layer-normalization)
+2. [Compile and Run](#-compile-and-run)
+3. [Results](#-results)
+4. [Software](#-software)
+5. [Hardware](#-hardware)
 
 ---
 
-## Repository Structure
-* **`hw/xlrs/LayerNorm/`**: Contains all SystemVerilog RTL source code, testbenches, and configuration files (`.sv`, `.qsf`, `.f`) for the hardware accelerator.
-* **`sw/apps/LayerNorm/`**: Contains the compiled software memory load files and artifacts required to interact with the hardware accelerator. *(Note: The C/C++ source code is fetched from the central K5 environment prior to build).*
-* **`sim/`**: Contains simulation configuration scripts, test vectors, and environments.
+## 🔢 Layer Normalization
+
+Layer Normalization transforms a vector of inputs by normalizing them across the feature dimension. It is widely used in Deep Learning models (like Transformers) to stabilize training and inference.
+
+$$
+y = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
+$$
+
+Where $\mu$ is the mean, $\sigma^2$ is the variance, $\gamma$ is the scaling factor, and $\beta$ is the bias.
+
+### 🔍 Our Implementation
+
+Our solution uses a hardware accelerator on the K5 architecture to offload the mathematical complexity (statistical accumulations, zero-point handling, affine transformations) into hardware:
+
+```text
+┌─────────┐    ┌───────────┐    ┌────────────┐    ┌──────────┐    ┌──────────┐
+│  Input  │    │ Zero-Point│    │ Mean & Var │    │ Affine   │    │ Output   │
+│ Vector  │───►│ Extraction│───►│ (E[x], E[x²]───►│ Transform│───►│ Vector   │
+└─────────┘    └───────────┘    └────────────┘    └──────────┘    └──────────┘
+```
+
+**Key Features:**
+- 📊 Sequential pipelined arithmetic (`ZP` $\rightarrow$ `EX/EX2` $\rightarrow$ `PreProcess` $\rightarrow$ `Affine`)
+- 🔄 Dual-mode: software reference or hardware-accelerated RTL logic
+- ⚡ Optimized for resource efficiency and host-CPU latency reduction
+
+For a more detailed explanation of the architecture, see the [Architecture section in the Hardware README](hw/xlrs/LayerNorm/README.md).
+
+For software integration details, see the [Software README](sw/apps/LayerNorm/README.md).
 
 ---
 
-## Setup & Prerequisites
-This project is built for the K5 architecture environment. To successfully build and run this repository, the following dependencies and environment variables must be configured on your system:
+## 🚀 Compile and Run
 
-### Required Tools
-* **Cadence Xcelium**: For running hardware simulation (`xrun`).
-* **Intel Quartus**: For logic synthesis and FPGA mapping.
+### 🔧 Initial Setup
+In your K5 environment, ensure you have sourced the base setup script. This configures the `$K5_ENV` and `$K5_XBOX_ENV` variables:
 
-### Required Environment Variables
-You must source the K5 setup scripts before running any commands. A typical setup looks like:
 ```bash
 source /path/to/k5_rc3_setup.sh
 ```
-* `$K5_ENV` / `$K5_XBOX_ENV`: Paths to the base K5 environment tools.
-* `$K5_SW_APPS`: Path to the software applications root.
-* `$K5_LIBS`: Path to shared libraries.
 
----
+### 🖥️ Running the LayerNorm Application
+To run the application, you compile the software memory images and run the simulation.
 
-## Build & Execution Instructions
-
-### 1. Compiling the Software Application
-The software builds the memory images needed to run on the simulated hardware. To compile the application:
-
+Compile the application (generates `instr_loadmem.txt` and `data_loadmem.txt`):
 ```bash
 launch_k5_app LayerNorm -ccd1 XON
 ```
-*This command uses the underlying scripts to compile the software code, generating `instr_loadmem.txt` and `data_loadmem.txt` in the `sw/apps/LayerNorm/build/` directory.*
 
-### 2. Running the Hardware Simulation
-Once the software memory images are built, launch the hardware simulation using Xcelium:
-
+Run the hardware simulation (Cadence Xcelium):
 ```bash
 launch_k5_sim LayerNorm
 ```
-*This command launches the hardware testbench, loads the software memory images, and runs the application on the simulated RTL accelerator.*
 
-### Expected Output
-When the simulation runs successfully, you should see the RTL stages advancing sequentially. An example log excerpt generated by the simulation:
+### 🚩 Available Flags
+| Flag | Description |
+|------|-------------|
+| `XON` | Enable the hardware accelerator logic |
 
+---
+
+## 📊 Results
+
+The simulation runs the application test logic, passing simulated inputs through the RTL.
+
+Upon successful execution, the output will log the vector stages advancing sequentially:
 ```text
 LayerNorm RTL: START vector 0
 DBG VEC0: shared=0x00000000 in=0x00000100 out=0x00000200 mu=128 inv_std=5 min_alpha=1 global_zp=0 gamma_zp=0 beta_zp=0
 LayerNorm RTL: DONE vector 0
 ```
-*After the simulation finishes, validation checks are performed against the reference implementation to verify correctness.*
-
----
-
-## Troubleshooting
-
-* **`launch_k5_app: command not found`**: You have not sourced the K5 environment scripts. Ensure `$K5_ENV` is correctly configured.
-* **Simulation fails to load memory**: Ensure you ran `launch_k5_app` before `launch_k5_sim` so the `build/` directory is properly populated with the `.txt` loadmem files.
-* **Missing paths in `.f` files**: If you renamed the `LayerNorm` folder, the hardcoded paths in the `.f` configurations will break. The folder name must match `LayerNorm`.
-
----
-**Authors:** K5 Development Team

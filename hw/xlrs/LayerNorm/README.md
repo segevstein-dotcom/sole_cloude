@@ -1,54 +1,91 @@
-# LayerNorm Hardware Accelerator Architecture
+# 🔢 LayerNorm Hardware Accelerator
 
-## Purpose
-This directory contains the SystemVerilog Register Transfer Level (RTL) implementation of a hardware accelerator designed to perform Layer Normalization (`LayerNorm`). By offloading the math-intensive statistical calculations and affine transformations, the host CPU experiences massive latency reductions when evaluating Deep Learning workloads.
+## 📘 Overview
 
-## High-Level Architecture
-The accelerator is designed as a sequential multi-stage processing pipeline. It utilizes an internal Finite State Machine (FSM) to coordinate memory reads, calculations, and memory writes over a shared memory interface.
+This project implements a modular hardware accelerator for the **Layer Normalization function**. By offloading the math-intensive statistical calculations and affine transformations, the host CPU experiences massive latency reductions.
 
-### Module Hierarchy
-* **`LayerNorm.sv`**: The Top-level wrapper module. It manages the FSM, register mapping, memory request muxing, and interconnects the functional stages.
-  * **`zp_stage`** (`zp.sv`): Extracts zero-point and quantization parameters from shared memory.
-  * **`ex_ex2_stage`** (`ex_ex2.sv`): Streams input feature maps and accumulates the sum (`E[x]`) and sum of squares (`E[x^2]`).
-  * **`preprocess_stage`** (`PreProcess.sv`): Computes statistical parameters like mean (`mu`) and inverse standard deviation (`inv_std`) using the accumulated moments.
-  * **`affine_stage`** (`Affine.sv`): Performs the actual normalization and affine transformation (`y = gamma * ((x - mu) * inv_std) + beta`) accounting for scaling (`min_alpha`).
+The design is written in **SystemVerilog** and implements a sequential Finite State Machine (FSM) pipeline to compute variance, standard deviation, and normalization.
 
-## Register Interface
-The hardware relies on a set of 32-bit `host_regs` for configuration:
-* `host_regs[0]`: `shared_addr` (Memory pointer to quantization/scaling parameters)
-* `host_regs[1]`: `input_addr` (Memory pointer to input activations)
-* `host_regs[2]`: `output_addr` (Memory pointer for output activations)
-* `host_regs[3]`: `num_channels` (Size of the vector/feature map)
-* `host_regs[4]`: `start_layernorm` (Start trigger pulse)
-* `host_regs_data_out[5]`: `layernorm_done` (Hardware done indicator)
+---
 
-## Data Flow & Processing Sequence (FSM)
-1. **`IDLE`**: Hardware waits for a `start_layernorm` trigger from the host.
-2. **`ZP`**: Reads `global_zp`, `gamma_zp`, and `beta_zp` from `shared_addr`.
-3. **`EX_EX2`**: Scans the input activations to calculate aggregate statistics (`ex`, `ex2`, and minimum scaling alpha).
-4. **`PREPROCESS`**: Resolves `mu` (mean) and `inv_std` (inverse standard deviation).
-5. **`AFFINE`**: Passes through the input memory again, normalizing each activation with `mu` and `inv_std`, applying the `gamma`/`beta` shift, and writing the quantized result to `output_addr`.
-6. **`DONE`**: Asserts the sticky done bit in the host register map.
+## 🧱 Architecture
 
-## Simulation & Verification
-Verification is handled by standalone testbenches (`tb_*.sv`) mapping directly to the individual stages.
-
-### Running Simulation
-The simulation is executed via Xcelium:
-```bash
-launch_k5_sim LayerNorm
-```
-The simulation runs the application test logic, passing simulated inputs through the RTL.
-
-### Expected Simulation Output
-During `PREPROCESS -> AFFINE` transitions, debug monitors print vector characteristics. An example Xcelium log excerpt:
 ```text
-LayerNorm RTL: START vector 0
-DBG VEC0: shared=0x00000000 in=0x00000100 out=0x00000200 mu=128 inv_std=5 min_alpha=1 global_zp=0 gamma_zp=0 beta_zp=0
-LayerNorm RTL: DONE vector 0
+LayerNorm.sv (top-level)
+ ├── zp.sv          // Extracts zero-point and quantization params
+ ├── ex_ex2.sv      // Accumulates E[x] (sum) and E[x²] (sum of squares)
+ ├── PreProcess.sv  // Computes mean (mu) and inverse std deviation (inv_std)
+ └── Affine.sv      // Applies normalization: y = gamma * ((x - mu) * inv_std) + beta
 ```
 
-## Important Files
-* **`.sv` files**: Standard SystemVerilog RTL and testbenches.
-* **`LayerNorm.f`**: File list specifying the paths to all required Verilog sources for the simulator.
-* **`LayerNorm.qpf` / `.qsf`**: Intel Quartus project configuration files for logic synthesis and timing constraint evaluations.
+---
+
+## 🧩 Module Descriptions
+
+### 🔹 `LayerNorm.sv` *(Top-Level Module)*
+**Role**: Orchestrates the LayerNorm operation pipeline.
+
+**Responsibilities**:
+* Exposes `host_regs` (0 to 5) for configuration and start/done signaling.
+* Multiplexes memory requests (`mem_intf_read`, `mem_intf_write`) for all underlying stages.
+* Manages the global FSM states.
+
+---
+
+### 🔹 `zp.sv` (`zp_stage`)
+**Role**: Fetches necessary quantization zero-points and scaling factors.
+
+**Responsibilities**:
+* Reads `global_zp`, `gamma_zp`, and `beta_zp` from the `shared_addr`.
+
+---
+
+### 🔹 `ex_ex2.sv` (`ex_ex2_stage`)
+**Role**: Scans input activations to accumulate statistical moments.
+
+**Responsibilities**:
+* Accumulates the sum of inputs (`E[x]`).
+* Accumulates the sum of squares (`E[x²]`).
+* Determines the minimum scaling factor (`min_alpha`).
+
+---
+
+### 🔹 `PreProcess.sv` (`preprocess_stage`)
+**Role**: Resolves final mean and inverse standard deviation.
+
+**Responsibilities**:
+* Computes `mu` (mean) from `E[x]`.
+* Computes `inv_std` (inverse standard deviation) from `E[x]` and `E[x²]`.
+
+---
+
+### 🔹 `Affine.sv` (`affine_stage`)
+**Role**: Computes and outputs the final normalized values:
+
+$$
+y = \gamma \cdot ((x - \mu) \cdot \text{inv\_std}) + \beta
+$$
+
+**Responsibilities**:
+* Reads input data a second time.
+* Applies normalization and shifts.
+* Writes normalized vectors to `output_addr`.
+
+---
+
+## 🧮 Pipeline Summary (FSM)
+
+| State | Module | Function |
+|-------|--------|----------|
+| 1️⃣ `IDLE` | FSM | Waits for `start_layernorm` trigger |
+| 2️⃣ `ZP` | `zp_stage` | Fetches quantization params |
+| 3️⃣ `EX_EX2` | `ex_ex2_stage` | Accumulates moments |
+| 4️⃣ `PREPROCESS` | `preprocess_stage`| Computes `mu` and `inv_std` |
+| 5️⃣ `AFFINE` | `affine_stage` | Normalizes and outputs data |
+| 6️⃣ `DONE` | FSM | Asserts `layernorm_done` to host |
+
+---
+
+## 🛠 Usage
+
+Refer to the [Software README](../../../sw/apps/LayerNorm/README.md) for instructions on how to compile the memory images and run the design.
