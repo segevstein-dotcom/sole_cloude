@@ -60,24 +60,60 @@ The internal `Affine` stage performs intermediate calculations in high-precision
 ## 🚀 Compile and Run
 
 ### 🔧 Initial Setup
-In your K5 environment, ensure you have sourced the base setup script. This configures the `$K5_ENV` and `$K5_XBOX_ENV` variables:
+In your BIU-Engineering cloud environment, open a terminal anywhere and enter the following command:
 
 ```bash
-source /path/to/k5_rc3_setup.sh
+source /project/tsmc65/shared/k5_share/k5_xbox/setup/build_k5_proj_rc3.sh
 ```
 
-### 🖥️ Running the LayerNorm Application
-To run the application, you compile the software memory images and run the simulation.
+This only needs to be executed once ever, and should take just a few seconds. It will permanently configure your account setup for the environment.
 
-Compile the application (generates `instr_loadmem.txt` and `data_loadmem.txt`):
+**⚠️ IMPORTANT: Once the setup is complete, close the terminal and open a new one to continue with the next steps!**
+
+### 📂 Your Personal Working Environment
+First, clone the repository and rename it:
+```bash
+tsmc65
+git clone <repository_url>
+mv LayerNorm my_k5_proj
+cd $ws/my_k5_proj
+ls -l
+```
+
+You will find three sub-folders:
+- `sw`: For software applications
+- `hw`: For hardware accelerators
+- `sim`: For simulation workspace
+
+### 🖥️ Running the Layernorm Application
+To run our SOC SW application in simulation, we need to open two terminal sessions:
+- **Terminal-1**: Software application User Interface
+- **Terminal-2**: Hardware Verilog Simulation for SOC platform and acceleration logic
+
+The two terminal sessions will invisibly communicate with each other.
+
+Open two separate terminals and in each of them run:
+
+```bash
+set_k5_terminal
+```
+
+In one of the two terminals (doesn't matter which) start the application by:
+
 ```bash
 launch_k5_app LayerNorm -ccd1 XON
 ```
 
-Run the hardware simulation (Cadence Xcelium):
+The `-ccd1` flag is used to pass conditional compile definitions to the C application.
+
+In the other terminal start the simulation session by:
+
 ```bash
 launch_k5_sim LayerNorm
 ```
+
+The two terminal sessions will wait each for the other and will proceed to simulation once both are started.
+The prints from the application C code will show up on the application launching terminal.
 
 ### 🚩 Available Flags
 | Flag | Description |
