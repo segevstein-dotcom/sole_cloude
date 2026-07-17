@@ -63,7 +63,7 @@ LayerNorm.sv (top-level)
 **Role**: Computes and outputs the final normalized values:
 
 $$
-y = \gamma \cdot ((x - \mu) \cdot \text{inv\_std}) + \beta
+y = \gamma \cdot ((x - \mu) \cdot \text{inv\std}) + \beta
 $$
 
 **Responsibilities**:
