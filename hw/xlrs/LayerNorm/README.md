@@ -63,10 +63,10 @@ LayerNorm.sv (top-level)
 **Role**: Computes and outputs the final normalized values:
 
 $$
-y = \gamma \cdot ((x - \mu) \cdot \text{inv-std}) + \beta
+y = \gamma \cdot \left((x - \mu) \cdot \mathrm{inv\_std}\right) + \beta
 $$
 
-Where $\text{inv-std}$ is the **inverse standard deviation** ($\frac{1}{\sqrt{\sigma^2 + \epsilon}}$) computed by the `PreProcess` stage.
+Where $\text{inv_std}$ is the **inverse standard deviation** ($\frac{1}{\sqrt{\sigma^2 + \epsilon}}$) computed by the `PreProcess` stage.
 
 **Responsibilities**:
 * Reads input data a second time.
