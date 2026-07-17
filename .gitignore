@@ -1,0 +1,29 @@
+# Intel Quartus generated files
+db/
+incremental_db/
+qsyn_output_files/
+*.qws
+*.sof
+*.pof
+*.smsg
+*.summary
+*.jdi
+*.pin
+*.sld
+*.rpt
+*.chg
+*.log
+*.tgz
+
+# Cadence Xcelium generated files
+xcelium.d/
+.simvision/
+*.history
+*.log
+*.shm/
+*.dsn
+*.trn
+*.key
+
+# Software build artifacts
+sw/apps/*/build/

@@ -1,5 +1,5 @@
 xrun(64): 23.09-s013: (c) Copyright 1995-2024 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	23.09-s013: Started on Jul 16, 2026 at 20:22:00 UTC
+TOOL:	xrun(64)	23.09-s013: Started on Jul 16, 2026 at 20:51:11 UTC
 xrun
 	-sv
 	-f $K5_XBOX_ENV/tb/k5_xbox_tb_irun.f
@@ -491,10 +491,10 @@ LayerNorm RTL: START vector 196
 LayerNorm RTL: DONE vector 196
 
 
- 132329855ns uart_tb.sv: Detected remote quit command. Quitting 
+ 131648535ns uart_tb.sv: Detected remote quit command. Quitting 
 
 
-Simulation complete via $finish(1) at time 132329855 NS + 1
+Simulation complete via $finish(1) at time 131648535 NS + 1
 /project/tsmc65/shared/k5_share/kuntz5/src/tb/k5_uart_tb.sv:305                                     $finish ;
 xcelium> exit
-TOOL:	xrun(64)	23.09-s013: Exiting on Jul 16, 2026 at 20:22:29 UTC  (total: 00:00:29)
+TOOL:	xrun(64)	23.09-s013: Exiting on Jul 16, 2026 at 20:51:58 UTC  (total: 00:00:47)
