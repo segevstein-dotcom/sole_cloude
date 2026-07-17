@@ -66,7 +66,7 @@ $$
 y = \gamma \cdot \left((x - \mu) \cdot \mathrm{inv\_std}\right) + \beta
 $$
 
-Where $\text{inv\_std}$ is the **inverse standard deviation** ($\frac{1}{\sqrt{\sigma^2 + \epsilon}}$) computed by the `PreProcess` stage.
+Where $\math{inv\_std}$ is the **inverse standard deviation** ($\frac{1}{\sqrt{\sigma^2 + \epsilon}}$) computed by the `PreProcess` stage.
 
 **Responsibilities**:
 * Reads input data a second time.
