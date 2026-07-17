@@ -57,6 +57,10 @@ LayerNorm.sv (top-level)
 * Computes `mu` (mean) from `E[x]`.
 * Computes `inv_std` (inverse standard deviation) from `E[x]` and `E[x²]`.
 
+**Optimizations**:
+* 🧮 **Reciprocal Multiplication**: Eliminates division hardware by multiplying with a precomputed constant and bit-shifting.
+* ⚡ **LUT for $1/\sqrt{x}$**: Fetches `inv_std` directly from a Look-Up Table using the variance as an index.
+
 ---
 
 ### 🔹 `Affine.sv` (`affine_stage`)
@@ -73,23 +77,12 @@ Where `inv_std` is the **inverse standard deviation** ($\frac{1}{\sqrt{\sigma^2 
 * Applies normalization and shifts.
 * Writes normalized vectors to `output_addr`.
 
----
-
-## 💡 Hardware Optimizations
-
-This accelerator implements several critical synthesis optimizations to maximize performance and minimize logic utilization:
-
-### 1️⃣ LUT-based Inverse Square Root
-Computing $\frac{1}{\sqrt{\sigma^2 + \epsilon}}$ typically requires massive division and square-root hardware. Instead, the `PreProcess` stage clamps the 32-bit variance down to an 8-bit index (`var_hw >> 8`) and fetches a pre-calculated 16-bit `inv_std` from a **Look-Up Table (LUT)** stored in shared memory.
-
-### 2️⃣ Reciprocal Multiplication (Avoiding Dividers)
-Division by constants (like $N=384$ for channel means) is notoriously slow in hardware. The RTL eliminates division entirely by using **reciprocal multiplication**. For example, dividing by 384 is accomplished by multiplying by a precomputed constant (`11184811`) and shifting to extract the top 32 bits:
-`mu_abs_q = (ex_in * 11184811) >> 32;`
-
-### 3️⃣ Quantization & Truncation (64-bit to 8-bit)
-The internal `Affine` stage performs intermediate calculations in high-precision **64-bit** signed arithmetic to prevent overflow. In the final output pipeline stage, it performs an arithmetic right-shift (`>>> 14`) to safely discard lower fractional bits, and statically clamps the result between `-128` and `127` before casting the final probability distribution back into a compact **8-bit** format.
+**Optimizations**:
+* 📉 **Quantization & Truncation**: Computes math in high-precision 64-bit arithmetic to prevent overflow, then arithmetic right-shifts (`>>> 14`) and clamps the output between `-128` and `127` to safely cast into an 8-bit format.
 
 ---
+
+
 
 ## 🧮 Pipeline Summary (FSM)
 
