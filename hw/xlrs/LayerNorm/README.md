@@ -54,7 +54,7 @@ LayerNorm.sv (top-level)
 **Role**: Resolves final mean and inverse standard deviation.
 
 **Responsibilities**:
-* Computes `mu` (mean) from `E[x]`.
+* Computes $\mu$ (mean) from `E[x]`.
 * Computes `inv_std` (inverse standard deviation) from `E[x]` and `E[x²]`.
 
 ---
