@@ -72,9 +72,3 @@ Execute the compiled software on the simulated hardware:
 ```bash
 launch_k5_sim LayerNorm
 ```
-
-### ⚠️ Common Errors
-| Error Type | Description |
-|------------|-------------|
-| 📁 **Missing Files** | Simulation complains about missing `.txt` files. Ensure you ran `launch_k5_app` first. |
-| 🛑 **Command Not Found** | Ensure `$K5_ENV` is sourced via the environment setup scripts. |
