@@ -3,6 +3,23 @@
 ## 📘 Overview
 This directory handles the software-side integration for the LayerNorm hardware accelerator. It is responsible for programming the host memory-mapped registers, initializing shared memory, and interacting with the FPGA/RTL.
 
+### 🔍 Our Implementation
+
+The software application acts as the orchestration layer for the hardware accelerator. It manages data movement, triggers the computation, and verifies the hardware output against a pure-software reference model:
+
+```text
+┌──────────────┐    ┌─────────────┐    ┌────────────┐    ┌──────────────┐
+│  Initialize  │    │  Configure  │    │ Wait for   │    │  Validate    │
+│  Memory      │───►│  Registers  │───►│ Hardware   │───►│  Results     │
+│ (In/Out/Shr) │    │ (Reg 0-4)   │    │ (Poll Reg5)│    │ (vs. Ref SW) │
+└──────────────┘    └─────────────┘    └────────────┘    └──────────────┘
+```
+
+**Key Responsibilities:**
+- 🧠 Generating simulated test inputs and expected outputs
+- 🗺️ Allocating and formatting shared memory regions
+- ⏱️ Performance benchmarking (cycle counting) of the hardware
+
 ---
 
 ## 🗂️ File Structure
