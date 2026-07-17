@@ -14,7 +14,7 @@
 Layer Normalization transforms a vector of inputs by normalizing them across the feature dimension. It is widely used in Deep Learning models (like Transformers) to stabilize training and inference.
 
 $$
-y = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
+\text{Layernorm}(x_i)= \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
 $$
 
 Where $\mu$ is the mean, $\sigma^2$ is the variance, $\gamma$ is the scaling factor, and $\beta$ is the bias.
