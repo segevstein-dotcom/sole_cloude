@@ -24,10 +24,10 @@ Where $\mu$ is the mean, $\sigma^2$ is the variance, $\gamma$ is the scaling fac
 Our solution uses a hardware accelerator on the K5 architecture to offload the mathematical complexity (statistical accumulations, zero-point handling, affine transformations) into hardware:
 
 ```text
-┌─────────┐    ┌────────────┐    ┌──────────────┐     ┌───────────┐    ┌──────────┐
-│  Input  │    │ Zero-Point │    │ Mean & Var   │     │  Affine   │    │  Output  │
-│ Vector  │───►│ Extraction │───►│ (E[x], E[x²] │───►│ Transform │───► │  Vector  │
-└─────────┘    └────────────┘    └──────────────┘     └───────────┘    └──────────┘
+┌─────────┐    ┌────────────┐    ┌──────────────┐    ┌───────────┐    ┌──────────┐
+│  Input  │    │ Zero-Point │    │ Mean & Var   │    │  Affine   │    │  Output  │
+│ Vector  │───►│ Extraction │───►│ (E[x], E[x²] │───►│ Transform │───►│  Vector  │
+└─────────┘    └────────────┘    └──────────────┘    └───────────┘    └──────────┘
 ```
 
 **Key Features:**
