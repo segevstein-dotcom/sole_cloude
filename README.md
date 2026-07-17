@@ -26,7 +26,7 @@ Our solution uses a hardware accelerator on the K5 architecture to offload the m
 ```text
 ┌─────────┐    ┌────────────┐    ┌──────────────┐     ┌───────────┐    ┌──────────┐
 │  Input  │    │ Zero-Point │    │ Mean & Var   │     │  Affine   │    │  Output  │
-│ Vector  │───►│ Extraction │───►│ (E[x], E[x²] │───►│ Transform │───►│  Vector  │
+│ Vector  │───►│ Extraction │───►│ (E[x], E[x²] │───►│ Transform │───► │  Vector  │
 └─────────┘    └────────────┘    └──────────────┘     └───────────┘    └──────────┘
 ```
 
